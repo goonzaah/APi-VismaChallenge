@@ -62,13 +62,10 @@ Los `Migration` son clases que definen cómo implementar un cambio en el modelo 
 Es importante que al momento de ejecutar los comandos, este seleccionado como **startup project** `Presentation.Api` y como **default project** `Core.Data.EF`, de otro modo, la consola arrojará errores.
 
 
-### Serilog
-
-Para logear lo que va pasando en la ejecucion y se pueda comprender mejor la ejecucion. Los logeos se guardan en la tabla `Logs` en la base de datos.
-
-## API Publica
-
-## Datos de conexión a la base de datos MySql
-
 # Instalación Local
 Es necesario tener instalado NET CORE 3.1 SDK. Para trabajar localmente es recomendable usar Visual Studio 2019.
+
+Debe configurar la base de datos, en el arrchivo que esta en la siguiente ruta "src/Presentation.API/appsettings.json", debe ingresar los datos de su conexion a MySql. 
+
+Luego desde el `Package Manager Console` seleccionado como **startup project** `Presentation.Api` y como **default project** `Core.Data.EF`, se debe ejecutar el comando `update-database` y los cambios se reflejarán en la base de datos.
+Hay una carpeta llamada Scripts donde se encuentran los insert para las tablas "products" y "rentprices", deben ser ejecutado en el entorno MySql.
