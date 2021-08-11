@@ -6,6 +6,6 @@ namespace Core.Data.Repositories
 {
     public interface IProductRepository
     {
-        IEnumerable<Product> GetAll();
+        Task<List<Product>> GetAll();
     }
 }

@@ -1,6 +1,9 @@
 ﻿using Core.Data.Repositories;
+using Core.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Core.Data.EF.Repositories
 {
@@ -14,8 +17,9 @@ namespace Core.Data.EF.Repositories
         }
 
 
-        public IEnumerable<Entities.Product> GetAll()
-         => dataContext.Products;
-        
+        public Task<List<Product>> GetAll()
+        {
+            return dataContext.Products.ToListAsync();
+        }
     }
 }

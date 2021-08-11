@@ -20,9 +20,9 @@ namespace Presentation.API.Handlers.Rent.GetProducts
 
         public async Task<List<ProductResponse>> Handle(GetProductsRequest request, CancellationToken cancellationToken)
         {
-            var products = productRepository.GetAll();
+            var products = await productRepository.GetAll();
 
-            return products.Select(x => new ProductResponse() { Id = x.Id, Name = x.Name }).ToList();
+            return products?.Select(x => new ProductResponse() { Id = x.Id, Name = x.Name }).ToList();
         }
 
     }

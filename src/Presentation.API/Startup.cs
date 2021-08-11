@@ -49,9 +49,9 @@ namespace Presentation.API
 
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
-                .AddFluentValidation(options =>
+                .AddFluentValidation(opt =>
                 {
-                    options.RegisterValidatorsFromAssembly(Assembly.Load("Core"));
+                    opt.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
                 });
 
             FluentValidation.ValidatorOptions.LanguageManager.Culture = new CultureInfo("es");

@@ -7,7 +7,8 @@ namespace Presentation.API.Handlers.Rent.GetPrice
     public class GetPriceRequest : IRequest<GetPriceResponse>
     {
         public string ProductId { get; set; }
-        public TimeSpan Time { get; set; }
+        public double Hours { get; set; }
+        public double Days { get; set; }
         public int Quantity { get; set; }
     }
     

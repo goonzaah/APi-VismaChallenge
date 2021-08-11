@@ -7,6 +7,7 @@ namespace Presentation.API.Helpers
     {
         public static PriceResponse ApplyDiscuountToResponse(PriceResponse response, DiscountEnum discountEnum)
         {
+            if (response.FinalPrice <= 0) return response;
             var discountInfo = MappingHelper.DiscountInfo[discountEnum];
             response.Discounts.Add(discountInfo);
             response.FinalPrice = ApplyDiscuount(response.FinalPrice, discountInfo.Percentage);

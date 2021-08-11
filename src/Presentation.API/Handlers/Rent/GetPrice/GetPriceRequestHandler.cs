@@ -29,7 +29,7 @@ namespace Presentation.API.Handlers.Rent.GetPrice
 
             if (!rentPrices.Any()) throw new InvalidProductException();
 
-            var unitPrice = GetUnitPrice(rentPrices, request.Time);
+            var unitPrice = GetUnitPrice(rentPrices, TimeSpan.FromHours(request.Hours) + TimeSpan.FromDays(request.Days));
 
             return GetPriceResponse(request, rentPrices, unitPrice);
         }
@@ -37,15 +37,15 @@ namespace Presentation.API.Handlers.Rent.GetPrice
 
         private double GetUnitPrice(IEnumerable<RentPrice> rentPrices, TimeSpan timeRequested)
         {
-            var rentPricesDescendingByTime = rentPrices.OrderBy(x => x.Time);
+            var rentPricesDescendingByTime = rentPrices.OrderByDescending(x => x.Time);
 
             foreach (var rentInfo in rentPricesDescendingByTime)
             {
                 if (rentInfo.Time < timeRequested)
-                    return Math.Ceiling(rentInfo.Time / timeRequested) * rentInfo.Value;
+                    return Math.Ceiling(timeRequested / rentInfo.Time) * rentInfo.Value;
             }
 
-            return rentPricesDescendingByTime.FirstOrDefault().Value;
+            return rentPricesDescendingByTime.LastOrDefault().Value;
         }
 
         private GetPriceResponse GetPriceResponse(GetPriceRequest request, IEnumerable<RentPrice> rentPrices, double unitPrice)

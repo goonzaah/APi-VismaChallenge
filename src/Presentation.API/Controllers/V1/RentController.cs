@@ -28,8 +28,8 @@ namespace Presentation.API.Controllers.V1
             return Ok(result);
         }
 
-        [HttpPost("getPrice")]
-        public async Task<ActionResult<GetPriceResponse>> PostTopSecretSplit([FromBody] GetPriceRequest request)
+        [HttpGet("getPrice")]
+        public async Task<ActionResult<GetPriceResponse>> GetPrice([FromQuery] GetPriceRequest request)
         {
             var result = await mediator.Send(request);
             

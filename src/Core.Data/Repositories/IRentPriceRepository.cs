@@ -7,7 +7,7 @@ namespace Core.Data.Repositories
 {
     public interface IRentPriceRepository
     {
-        IEnumerable<RentPrice> GetAll();
-        Task<IEnumerable<RentPrice>> GetByProductId(Guid id);
+        Task<List<RentPrice>> GetAll();
+        Task<List<RentPrice>> GetByProductId(Guid id);
     }
 }

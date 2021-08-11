@@ -13,10 +13,8 @@ namespace Presentation.API.Handlers.Rent.GetPrice
                 .NotNull().WithMessage("{PropertyName} no puede estar vacío")
                 .Must(IsValidGuid).WithMessage("{PropertyName} tiene un formato de Guid inválido");
 
-            RuleFor(x => x.Time)
-               .NotEmpty().WithMessage("{PropertyName} no puede estar vacío")
-               .NotNull().WithMessage("{PropertyName} no puede estar vacío")
-               .GreaterThan(TimeSpan.Zero).WithMessage("{PropertyName} debe ser mayor a cero");
+            RuleFor(x => x.Hours)
+               .GreaterThan(0).WithMessage("{PropertyName} debe ser mayor a cero");
 
             RuleFor(x => x.Quantity)
                .GreaterThan(0).WithMessage("{PropertyName} debe ser mayor a cero");
